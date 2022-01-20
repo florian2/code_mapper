@@ -25,7 +25,7 @@ module CodeMapper
       end
 
       def done
-        @graph.outout(dot: @io)
+        @graph.output(dot: @io)
       end
     end
   end
