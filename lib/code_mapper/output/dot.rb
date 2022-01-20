@@ -7,7 +7,7 @@ module CodeMapper
         @io = io
         @stack = []
 
-        @graph = Graphviz::Graph.new('CodeMapper')
+        @graph = ::Graphviz::Graph.new('CodeMapper')
         @graph.attributes[:rankdir] = 'LR'
       end
 
