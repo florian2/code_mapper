@@ -1,4 +1,4 @@
-require 'graphviz'
+require 'ruby-graphviz'
 
 module CodeMapper
   module Output
@@ -7,16 +7,14 @@ module CodeMapper
         @io = io
         @stack = []
 
-        @graph = ::Graphviz::Graph.new('CodeMapper')
-        @graph.attributes[:rankdir] = 'LR'
+        @graph = GraphViz.new(:G, type: :digraph)
       end
 
       def push(tp, normalized_class_name)
-        node = @graph.add_node("#{normalized_class_name}.#{tp.method_id.to_s}")
-        node.attributes[:shape] = 'rectangle'
+        node = @graph.add_nodes("#{normalized_class_name}.#{tp.method_id.to_s}")
 
         if @stack != []
-          @stack.last.connect(node)
+          @graph.add_edges(@stack.last, node)
         end
 
         @stack << node
@@ -27,7 +25,7 @@ module CodeMapper
       end
 
       def done
-        @io.puts @graph.to_dot
+        @graph.outout(dot: @io)
       end
     end
   end
