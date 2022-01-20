@@ -1,3 +1,4 @@
+require "graphviz"
 require "code_mapper/version"
 require "code_mapper/tracer"
 require "code_mapper/filter/start_at"
