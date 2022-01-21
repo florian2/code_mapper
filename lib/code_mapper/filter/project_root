@@ -1,0 +1,13 @@
+module CodeMapper
+  module Filter
+    class ProjectRoot
+      def initialize(root_path)
+        @root = root_path
+      end
+
+      def keep?(tp, normalized_class_name)
+        root.include? tp.path
+      end
+    end
+  end
+end
