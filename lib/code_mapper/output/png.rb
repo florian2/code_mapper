@@ -3,8 +3,8 @@ require 'ruby-graphviz'
 module CodeMapper
   module Output
     class Png
-      def initialize(io)
-        @io = io
+      def initialize(file_name)
+        @file = File.open(file_name, 'w')
         @stack = []
 
         @graph = GraphViz.new(:G, type: :digraph)
@@ -25,7 +25,8 @@ module CodeMapper
       end
 
       def done
-        @graph.output(png: @io)
+        @graph.output(png: @file)
+        @file.close
       end
     end
   end
