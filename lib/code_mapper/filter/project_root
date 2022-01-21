@@ -6,7 +6,7 @@ module CodeMapper
       end
 
       def keep?(tp, normalized_class_name)
-        tp.path.include? root
+        tp.path.include? @root
       end
     end
   end
