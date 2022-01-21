@@ -2,11 +2,11 @@ module CodeMapper
   module Filter
     class ProjectRoot
       def initialize(root_path)
-        @root = root_path
+        @root = root_path.to_s
       end
 
       def keep?(tp, normalized_class_name)
-        root.include? tp.path
+        tp.path.include? root
       end
     end
   end
